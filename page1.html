@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Proposal Cards 💌</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{margin:0;background:#0b050b;color:white;font-family:Poppins;overflow:hidden}
+.scene{padding:40px;text-align:center;animation:slide 1s}
+@keyframes slide{from{opacity:0;transform:translateX(60px)}to{opacity:1}}
+.card{
+ background:linear-gradient(135deg,#ff4d6d,#b5179e);
+ padding:30px;margin:20px auto;
+ width:75%;border-radius:20px;
+ font-size:1.4rem;cursor:pointer;
+ transition:.4s;
+}
+.card.open{background:#111;font-size:1.1rem}
+.fall{position:absolute;font-size:1.3rem;animation:drop linear infinite}
+@keyframes drop{0%{top:-10%}100%{top:110%}}
+</style>
+</head>
+
+<body>
+<div class="scene">
+<h2>Tap the Cards 💍</h2>
+
+<div class="card" onclick="openCard(this,'I don’t promise perfection, only honesty ❤️')">💌</div>
+<div class="card" onclick="openCard(this,'I choose you, every single day 🌹')">💌</div>
+<div class="card" onclick="openCard(this,'Will you walk with me through everything? 💍')">💌</div>
+
+<p style="opacity:.6">👈 swipe 👉</p>
+</div>
+
+<script>
+function openCard(el,text){
+ el.classList.add("open");
+ el.innerText=text;
+}
+
+for(let i=0;i<30;i++){
+ let f=document.createElement("div");
+ f.className="fall";
+ f.innerText=Math.random()>.5?"❤️":"🌹";
+ f.style.left=Math.random()*100+"vw";
+ f.style.animationDuration=5+Math.random()*6+"s";
+ document.body.appendChild(f);
+}
+
+function next(){location.href="page2.html";}
+function prev(){location.href="index.html";}
+let sx=0,ex=0;
+addEventListener("touchstart",e=>sx=e.touches[0].screenX);
+addEventListener("touchend",e=>{
+ ex=e.changedTouches[0].screenX;
+ if(sx-ex>50)next();
+ if(ex-sx>50)prev();
+});
+</script>
+</body>
+</html>
