@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Proposal Day 💍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+ margin:0;height:100vh;overflow:hidden;
+ background:radial-gradient(circle,#1a001a,#000);
+ color:white;font-family:Poppins,sans-serif;
+ display:flex;align-items:center;justify-content:center;
+}
+.scene{text-align:center;animation:slide 1.2s ease}
+@keyframes slide{from{opacity:0;transform:translateX(60px)}to{opacity:1}}
+.fall{position:absolute;font-size:1.4rem;animation:drop linear infinite}
+@keyframes drop{0%{top:-10%}100%{top:110%}}
+.hint{opacity:.6;margin-top:20px}
+</style>
+</head>
+
+<body>
+<div class="scene">
+<h1>Happy Proposal Day 💍</h1>
+<p>Some questions change everything</p>
+<div class="hint">👉 tap / swipe to begin</div>
+</div>
+
+<script>
+// falling hearts & roses
+for(let i=0;i<35;i++){
+ let f=document.createElement("div");
+ f.className="fall";
+ f.innerText=Math.random()>.5?"❤️":"🌹";
+ f.style.left=Math.random()*100+"vw";
+ f.style.animationDuration=6+Math.random()*6+"s";
+ document.body.appendChild(f);
+}
+
+// generated soft music
+function playMusic(){
+ if(localStorage.getItem("music")==="on") return;
+ const ctx=new (window.AudioContext||window.webkitAudioContext)();
+ const osc=ctx.createOscillator();
+ const gain=ctx.createGain();
+ osc.type="sine"; osc.frequency.value=196;
+ gain.gain.value=0.03;
+ osc.connect(gain); gain.connect(ctx.destination);
+ osc.start();
+ localStorage.setItem("music","on");
+}
+
+function next(){location.href="page1.html";}
+let sx=0,ex=0;
+addEventListener("touchstart",e=>{sx=e.touches[0].screenX; playMusic();});
+addEventListener("touchend",e=>{ex=e.changedTouches[0].screenX;if(sx-ex>50)next();});
+addEventListener("click",()=>{playMusic(); next();});
+</script>
+</body>
+</html>
