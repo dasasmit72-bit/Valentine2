@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>The Proposal 💍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+ margin:0;height:100vh;overflow:hidden;
+ background:radial-gradient(circle,#120014,#000);
+ color:white;font-family:Poppins;
+ display:flex;align-items:center;justify-content:center;
+}
+.box{text-align:center;animation:fadeUp 1.5s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1}}
+
+.neon{
+ font-size:2rem;color:#ff4fd8;
+ text-shadow:0 0 10px #ff4fd8,0 0 30px #b5179e;
+ animation:pulse 2s infinite;
+}
+@keyframes pulse{
+ 0%,100%{text-shadow:0 0 10px #ff4fd8}
+ 50%{text-shadow:0 0 40px #ff4fd8}
+}
+
+.ring{
+ font-size:3rem;margin:25px 0;
+ animation:ringFloat 3s ease-in-out infinite;
+}
+@keyframes ringFloat{
+ 0%,100%{transform:translateY(0) rotate(0)}
+ 50%{transform:translateY(-20px) rotate(20deg)}
+}
+
+.yes-btn{
+ padding:15px 50px;font-size:1.4rem;
+ border:none;border-radius:40px;
+ background:linear-gradient(135deg,#ff4d6d,#ff85c1);
+ color:white;cursor:pointer;
+ box-shadow:0 0 25px #ff4d6d;
+ animation:heartbeat 1.5s infinite;
+}
+@keyframes heartbeat{
+ 0%,100%{transform:scale(1)}
+ 50%{transform:scale(1.15)}
+}
+
+.fall{position:absolute;font-size:1.4rem;animation:drop linear infinite}
+@keyframes drop{0%{top:-10%}100%{top:110%}}
+</style>
+</head>
+
+<body>
+<div class="box">
+<div class="ring">💍</div>
+<div class="neon">Will you be mine?</div>
+<button class="yes-btn" onclick="accept()">YES 💖</button>
+</div>
+
+<script>
+for(let i=0;i<25;i++){
+ let f=document.createElement("div");
+ f.className="fall"; f.innerText="❤️";
+ f.style.left=Math.random()*100+"vw";
+ f.style.animationDuration=5+Math.random()*6+"s";
+ document.body.appendChild(f);
+}
+
+function accept(){
+ setTimeout(()=>location.href="page3.html",800);
+}
+</script>
+</body>
+</html>
